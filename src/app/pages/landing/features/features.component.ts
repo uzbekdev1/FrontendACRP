@@ -14,6 +14,9 @@ export class FeaturesComponent implements OnInit {
 
     ngOnInit() {
         this.features = this.landingService.getFeatures();
+        this.apiService.getNoticia().subscribe((res)=>{
+            this.noticias = res['results'];
+        })
     }
 
 }
