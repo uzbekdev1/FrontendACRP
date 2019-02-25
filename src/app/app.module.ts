@@ -10,8 +10,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  wheelPropagation: true,
-  suppressScrollX: true               
+    wheelPropagation: true,
+    suppressScrollX: true
 };
 
 import { CalendarModule } from 'angular-calendar';
@@ -40,45 +40,45 @@ import { FavoritesComponent } from './theme/components/favorites/favorites.compo
 
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBNcjxo_35qnEG17dQvvftWa68eZWepYE0'
-    }), 
-    PerfectScrollbarModule,     
-    CalendarModule.forRoot(),
-    SharedModule,
-    PipesModule,
-    routing
-  ],
-  declarations: [
-    AppComponent,
-    PagesComponent,
-    BlankComponent,
-    SearchComponent,
-    NotFoundComponent,
-    ErrorComponent,
-    TopInfoContentComponent,
-    SidenavComponent,
-    VerticalMenuComponent,
-    HorizontalMenuComponent,
-    FlagsMenuComponent,
-    FullScreenComponent,
-    ApplicationsComponent,
-    MessagesComponent,
-    UserMenuComponent,
-    FavoritesComponent
-  ],
-  providers: [
-    AppSettings,
-    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
-    { provide: OverlayContainer, useClass: CustomOverlayContainer }
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBNcjxo_35qnEG17dQvvftWa68eZWepYE0'
+        }),
+        PerfectScrollbarModule,
+        CalendarModule.forRoot(),
+        SharedModule,
+        PipesModule,
+        routing
+    ],
+    declarations: [
+        AppComponent,
+        PagesComponent,
+        BlankComponent,
+        SearchComponent,
+        NotFoundComponent,
+        ErrorComponent,
+        TopInfoContentComponent,
+        SidenavComponent,
+        VerticalMenuComponent,
+        HorizontalMenuComponent,
+        FlagsMenuComponent,
+        FullScreenComponent,
+        ApplicationsComponent,
+        MessagesComponent,
+        UserMenuComponent,
+        FavoritesComponent
+    ],
+    providers: [
+        AppSettings,
+        { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
+        { provide: OverlayContainer, useClass: CustomOverlayContainer }
+    ],
+    bootstrap: [
+        AppComponent
+    ]
 })
 export class AppModule { }

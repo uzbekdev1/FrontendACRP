@@ -8,12 +8,12 @@ import { NotFoundComponent } from './pages/errors/not-found/not-found.component'
 import { ErrorComponent } from './pages/errors/error/error.component';
 
 export const routes: Routes = [
-    { 
+    {
         path: 'dashboard',
         component: PagesComponent, children: [
             { path: '', loadChildren: './pages/dashboard/dashboard.module#DashboardModule', data: { breadcrumb: 'Dashboard' } },
             { path: 'users', loadChildren: './pages/users/users.module#UsersModule', data: { breadcrumb: 'Users' } },
-            { path: 'dynamic-menu', loadChildren: './pages/dynamic-menu/dynamic-menu.module#DynamicMenuModule', data: { breadcrumb: 'Dynamic Menu' }  },          
+            { path: 'dynamic-menu', loadChildren: './pages/dynamic-menu/dynamic-menu.module#DynamicMenuModule', data: { breadcrumb: 'Dynamic Menu' }  },
             { path: 'ui', loadChildren: './pages/ui/ui.module#UiModule', data: { breadcrumb: 'UI' } },
             { path: 'mailbox', loadChildren: './pages/mailbox/mailbox.module#MailboxModule', data: { breadcrumb: 'Mailbox' } },
             { path: 'chat', loadChildren: './pages/chat/chat.module#ChatModule', data: { breadcrumb: 'Chat' } },
@@ -37,6 +37,6 @@ export const routes: Routes = [
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {
-   preloadingStrategy: PreloadAllModules,  // <- comment this line for activate lazy load
-   // useHash: true
+    preloadingStrategy: PreloadAllModules,  // <- comment this line for activate lazy load
+    // useHash: true
 });

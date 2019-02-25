@@ -3,7 +3,7 @@
         <h1>Próximos Eventos</h1>
         <p class="secondary-text-color">Mantengase al tanto de nuestros próximos eventos, no pierda la oprotunidad de asistir a ellos</p>
     </div>
-    <ngu-carousel #myCarousel [inputs]="servicesCarouselConfig" [dataSource]="services">
+    <ngu-carousel *ngIf="!eventos" #myCarousel [inputs]="eventosCarouselConfig" [dataSource]="services">
         <ngu-tile *nguCarouselDef="let service; let j = index">
             <mat-card fxLayout="column" fxLayoutAlign="center center" class="w-100">            
                 <mat-icon class="mat-icon-xlg secondary-text-color">{{service.icon}}</mat-icon>
@@ -12,6 +12,20 @@
                     {{service.desc}}
                 </p> 
                 <button mat-raised-button color="accent" class="mt-3">READ MORE</button>          
+            </mat-card>
+        </ngu-tile>
+        <ul class="nguCarouselPoints" NguCarouselPoint>
+            <li *ngFor="let i of myCarousel.pointNumbers; let i = index" [class.active]="i==myCarousel.activePoint" (click)="myCarousel.moveTo(i)"></li>
+        </ul>
+    </ngu-carousel>
+    <ngu-carousel *ngIf="eventos" #myCarousel [inputs]="eventosCarouselConfig" [dataSource]="eventos">
+        <ngu-tile *nguCarouselDef="let evento; let j = index">
+            <mat-card fxLayout="column" fxLayoutAlign="center center" class="w-100">
+                <h2 class="block-title text-center my-3">{{evento.nombre}}</h2>
+                <p class="text-center secondary-text-color">
+                    {{evento.descripcion}}
+                </p>
+                <button mat-raised-button color="accent" class="mt-3">Leer Más</button>
             </mat-card>
         </ngu-tile>
         <ul class="nguCarouselPoints" NguCarouselPoint>

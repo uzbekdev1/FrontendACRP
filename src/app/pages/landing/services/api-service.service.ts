@@ -23,4 +23,12 @@ export class ApiService {
     getCentros(): Observable<Object> {
         return this.http.get(`http://127.0.0.1:8000/api/centro/`,{headers: this.headers});
     }
+
+    getEventos(): Observable<Object> {
+        return this.http.get(`http://127.0.0.1:8000/api/evento/`,{headers: this.headers});
+    }
+
+    getNoticia(): Observable<Object> {
+        return this.http.get(`http://127.0.0.1:8000/api/noticia/`,{headers: this.headers});
+    }
 }
