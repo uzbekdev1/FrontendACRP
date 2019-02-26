@@ -18,6 +18,7 @@ import {FeaturesComponent} from './features/features.component';
 import {ContactUsComponent} from './contact-us/contact-us.component';
 import {ApiService} from "./services/api-service.service";
 import {HttpClientModule} from "@angular/common/http";
+import {ReadMoreDialogComponent} from "./read-more-dialog/read-more-dialog.component";
 
 export const routes = [
     {path: '', component: LandingComponent, pathMatch: 'full'}
@@ -43,11 +44,13 @@ export const routes = [
         OurServicesComponent,
         OurWorksComponent,
         FeaturesComponent,
-        ContactUsComponent
+        ContactUsComponent,
+        ReadMoreDialogComponent
     ],
     providers: [
         LandingService, ApiService
-    ]
+    ],
+    entryComponents: [ReadMoreDialogComponent]
 })
 export class LandingModule {
 }

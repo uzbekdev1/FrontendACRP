@@ -3,6 +3,7 @@ import { NguCarouselConfig } from '@ngu/carousel';
 import { AppSettings } from '../../../app.settings';
 import { Settings } from '../../../app.settings.model';
 import { LandingService } from '../landing.service';
+import {ApiService} from "../services/api-service.service";
 
 @Component({
   selector: 'app-our-works',
@@ -12,8 +13,9 @@ import { LandingService } from '../landing.service';
 export class OurWorksComponent implements OnInit {
   public works;
   public worksCarouselConfig: NguCarouselConfig;
-  public settings: Settings;  
-  constructor(public appSettings:AppSettings, private landingService:LandingService) {
+  public settings: Settings;
+    proyectos: any[];
+  constructor(public appSettings:AppSettings, private landingService:LandingService, private apiService:ApiService) {
     this.settings = this.appSettings.settings; 
   }
 
@@ -34,6 +36,9 @@ export class OurWorksComponent implements OnInit {
       custom: 'banner',
       RTL: this.settings.rtl
     };
+      this.apiService.getProyecto().subscribe((res)=>{
+          this.proyectos = res['results']
+      })
   }
 
 }

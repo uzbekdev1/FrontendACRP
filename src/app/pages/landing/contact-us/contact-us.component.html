@@ -1,12 +1,12 @@
 <div id="contáctanos" class="mt-2 pt-3">
     <div fxLayout="column" fxLayoutAlign="center center" class="title-section p-2 mb-2">
         <h1>Contáctanos</h1>
-        <p class="secondary-text-color">Mantenga contacto con nosotros, será atendido inmediatamente</p>
+        <p class="secondary-text-color">Mantenga contacto con nosotros, será atendido lo antes posible</p>
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="center">
         <div fxFlex="100" fxFlex.gt-xs="50" class="p-2">
             <mat-card class="contact-form p-4">
-                <h1 class="secondary-text-color title">Envianos un correo electrónico</h1>
+                <h1 class="secondary-text-color title">Envianos un mensaje</h1>
                 <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
                     <div fxFlex="100" class="mt-2">
                         <mat-form-field class="w-100">
@@ -59,7 +59,7 @@
                     </div>
                     <div fxLayout="row" class="py-2">
                         <mat-icon class="mr-2">location_on</mat-icon>
-                        <i>Carretera a San Antonio de los Baños Km 1/2, Boyeros, La Habana</i>
+                        <i>Km 2½ Autopista La Habana - San Antonio de los Baños, La Habana, Cuba</i>
                     </div>
                 </div>
                 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="true" [fullscreenControl]="true">

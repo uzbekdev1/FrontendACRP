@@ -2,19 +2,35 @@
     <div fxLayout="column" fxLayoutAlign="center center" class="title-section p-2 mb-2">  
         <h1>Proyectos e Investigaciones</h1>
         <p class="secondary-text-color">Conozca acerca de los proyectos e investigaciones que realizan nuestros profesionales</p>
-    </div> 
-    <ngu-carousel #myCarousel [inputs]="worksCarouselConfig" [dataSource]="works">
+    </div>
+    <ngu-carousel *ngIf="!proyectos"  #myCarousel [inputs]="worksCarouselConfig" [dataSource]="works">
         <ngu-tile *nguCarouselDef="let work; let j = index">
-           <mat-card>                   
+           <mat-card >
                 <img mat-card-image [src]="work.src" alt="image">
                 <mat-card-content>
                     <h3>{{work.name}}</h3>
                     <p class="secondary-text-color mt-2">{{work.desc}}</p>
                 </mat-card-content>
                 <mat-divider></mat-divider>
-                <mat-card-actions fxLayoutAlign="end center" class="secondary-text-color">                               
+                <mat-card-actions fxLayoutAlign="end center" class="secondary-text-color">
                     <button mat-icon-button><mat-icon>favorite</mat-icon></button>
                     <button mat-icon-button><mat-icon>share</mat-icon></button>
+                </mat-card-actions>
+            </mat-card>
+        </ngu-tile>
+        <button mat-mini-fab NguCarouselPrev class="arrow-btn prev"><mat-icon>keyboard_arrow_left</mat-icon></button>
+        <button mat-mini-fab NguCarouselNext class="arrow-btn next"><mat-icon>keyboard_arrow_right</mat-icon></button>
+    </ngu-carousel>
+    <ngu-carousel *ngIf="proyectos" #myCarousel [inputs]="worksCarouselConfig" [dataSource]="proyectos">
+        <ngu-tile *nguCarouselDef="let proy; let j = index">
+            <mat-card>
+                <mat-card-content>
+                    <h2 style="text-align: center">{{proy.titulo}}</h2>
+                    <p class="secondary-text-color mt-2" style="height: 250px; overflow: hidden">{{proy.descripcion}}</p>
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-actions fxLayoutAlign="center" class="secondary-text-color">
+                    <button mat-raised-button color="accent" class="mt-3">Leer Más</button>
                 </mat-card-actions>
             </mat-card>
         </ngu-tile>

@@ -41,6 +41,7 @@
         <ngu-tile *nguCarouselDef="let member; let j = index">
             <mat-card class="testimonial-item">
                 <img [src]="member.foto" alt="image" class="mat-elevation-z2">
+                <h2>{{member.usuario.first_name}} {{member.usuario.last_name}}</h2>
                 <p class="text secondary-text-color my-3">"{{member.resumenCV}}"</p>
                 <h4 class="secondary-text-color"> - {{member.categoria}}, {{member.centro.nombre}}</h4>
             </mat-card>

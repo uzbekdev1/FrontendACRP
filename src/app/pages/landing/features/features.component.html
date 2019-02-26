@@ -5,27 +5,18 @@
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="center center">        
         <div fxFlex="100">
-            <div *ngIf="!noticias" fxLayout="row wrap" fxLayoutAlign="center center">
-                <div *ngFor="let feature of features" fxFlex="100" fxFlex.gt-md="25" fxFlex.md="33.3" fxFlex.sm="50" class="p-2">
-                    <mat-card fxLayout="column" fxLayoutAlign="center center" class="w-100">            
-                        <mat-icon class="mat-icon-xlg accent-color">{{feature.icon}}</mat-icon>
-                        <h2 class="block-title my-3">{{feature.title}}</h2>
-                        <p class="text-center secondary-text-color">
-                            {{feature.desc}}
-                        </p>
-                        <button mat-raised-button color="accent" class="mt-3">Leer Más</button>
-                    </mat-card>
-                </div>
-            </div>
             <div *ngIf="noticias" fxLayout="row wrap" fxLayoutAlign="center center">
                 <div *ngFor="let noticia of noticias" fxFlex="100" fxFlex.gt-md="25" fxFlex.md="33.3" fxFlex.sm="50" class="p-2">
-                    <mat-card fxLayout="column" fxLayoutAlign="center center" class="w-100 noticia_card">
-                        <img [src]="noticia.imagen">
-                        <h2 class="block-title my-3 text-center">{{noticia.titulo}}</h2>
-                        <p class="text-center secondary-text-color">
-                            {{noticia.miniDescripcion}}
-                        </p>
-                        <button mat-raised-button color="accent" class="mt-3">Leer Más</button>
+                    <mat-card>
+                        <img mat-card-image [src]="noticia.imagen" alt="image">
+                        <mat-card-content>
+                            <h3>{{noticia.titulo}}</h3>
+                            <p class="secondary-text-color mt-2">{{noticia.miniDescripcion}}</p>
+                        </mat-card-content>
+                        <mat-divider></mat-divider>
+                        <mat-card-actions fxLayoutAlign="center" class="secondary-text-color">
+                            <button mat-raised-button color="accent" (click)="openDialog(noticia)" class="mt-3">Leer Más</button>
+                        </mat-card-actions>
                     </mat-card>
                 </div>
             </div>

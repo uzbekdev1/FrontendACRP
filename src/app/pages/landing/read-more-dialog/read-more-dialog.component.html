@@ -1,0 +1,8 @@
+<mat-card fxLayout="column" fxLayoutAlign="center center" class="w-100 noticia-dialog">
+  <img [src]="data.imagen">
+  <h2 class="block-title my-3 text-center">{{data.titulo}}</h2>
+  <p class="text-center secondary-text-color">
+    {{data.descripcion}}
+  </p>
+    <button mat-button [mat-dialog-close]="data">Aceptar</button>
+</mat-card>
