@@ -1,0 +1,47 @@
+<h1 mat-dialog-title><span *ngIf="!evento.id">Añadir</span><span *ngIf="evento.id">Editar</span> Evento</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" class="user-form">
+        <mat-tab-group class="vertical-tabs">
+            <mat-tab label="Información">
+                <div fxLayout="column" class="form-field-outer">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Nombre" formControlName="nombre">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Categoria" formControlName="categoria">
+                    </mat-form-field>
+                    <mat-form-field color="accent" class="date_venc">
+                        <input matInput
+                               formControlName="fecha"
+                               [matDatepicker]="picker" placeholder="Seleccione una fecha" #picker2 >
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker  ></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </mat-tab>
+            <mat-tab label="Sede y descripción">
+                <div fxLayout="column" class="form-field-outer">
+                    <mat-form-field class="w-100">
+                        <mat-label>Centros</mat-label>
+                        <mat-select formControlName="centro" #selectBank>
+                            <mat-option *ngFor="let centro of centros, let i=index" [value]="centro.id">
+                                {{centro.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Dirección" formControlName="direccion">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Descripción</mat-label>
+                        <textarea matInput rows="4" formControlName="descripcion"></textarea>
+                    </mat-form-field>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]="!form.valid"><span *ngIf="evento && !evento.id">Crear</span><span *ngIf="evento && evento.id">Actualizar</span></button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+</div>

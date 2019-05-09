@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { emailValidator } from '../../theme/utils/app-validators';
 import { AppSettings } from '../../app.settings';
 import { Settings } from '../../app.settings.model';
+import {AuthService} from "./auth.service";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ import { Settings } from '../../app.settings.model';
 export class LoginComponent {
   public form:FormGroup;
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public fb: FormBuilder, public router:Router){
+  constructor(public appSettings:AppSettings, public fb: FormBuilder,
+              public router:Router, private authService: AuthService){
     this.settings = this.appSettings.settings; 
     this.form = this.fb.group({
       'username': [null, Validators.compose([Validators.required])],
@@ -22,8 +24,9 @@ export class LoginComponent {
 
   public onSubmit(values:Object):void {
     if (this.form.valid) {
-      console.log(this.form.getRawValue())
-      this.router.navigate(['/']);
+      this.authService.login(this.form.getRawValue())
+        if(this.authService.isAuthenticated())
+            this.router.navigate(['/home'])
     }
   }
 

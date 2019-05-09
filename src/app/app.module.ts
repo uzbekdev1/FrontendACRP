@@ -30,20 +30,21 @@ import { ErrorComponent } from './pages/errors/error/error.component';
 import { TopInfoContentComponent } from './theme/components/top-info-content/top-info-content.component';
 import { SidenavComponent } from './theme/components/sidenav/sidenav.component';
 import { VerticalMenuComponent } from './theme/components/menu/vertical-menu/vertical-menu.component';
-import { HorizontalMenuComponent } from './theme/components/menu/horizontal-menu/horizontal-menu.component';
 import { FlagsMenuComponent } from './theme/components/flags-menu/flags-menu.component';
 import { FullScreenComponent } from './theme/components/fullscreen/fullscreen.component';
 import { ApplicationsComponent } from './theme/components/applications/applications.component';
 import { MessagesComponent } from './theme/components/messages/messages.component';
 import { UserMenuComponent } from './theme/components/user-menu/user-menu.component';
 import { FavoritesComponent } from './theme/components/favorites/favorites.component';
-
+import {UsersService} from "./pages/users/users.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
+        HttpClientModule,
         ReactiveFormsModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBNcjxo_35qnEG17dQvvftWa68eZWepYE0'
@@ -52,7 +53,7 @@ import { FavoritesComponent } from './theme/components/favorites/favorites.compo
         CalendarModule.forRoot(),
         SharedModule,
         PipesModule,
-        routing
+        routing,
     ],
     declarations: [
         AppComponent,
@@ -64,7 +65,6 @@ import { FavoritesComponent } from './theme/components/favorites/favorites.compo
         TopInfoContentComponent,
         SidenavComponent,
         VerticalMenuComponent,
-        HorizontalMenuComponent,
         FlagsMenuComponent,
         FullScreenComponent,
         ApplicationsComponent,
@@ -73,9 +73,9 @@ import { FavoritesComponent } from './theme/components/favorites/favorites.compo
         FavoritesComponent
     ],
     providers: [
-        AppSettings,
+        AppSettings,UsersService,
         { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
-        { provide: OverlayContainer, useClass: CustomOverlayContainer }
+        { provide: OverlayContainer, useClass: CustomOverlayContainer },
     ],
     bootstrap: [
         AppComponent

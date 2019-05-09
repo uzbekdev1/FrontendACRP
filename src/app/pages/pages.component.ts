@@ -92,7 +92,8 @@ export class PagesComponent implements OnInit {
       this.settings.menu = 'vertical'
     }
     else{
-      (this.defaultMenu == 'horizontal') ? this.settings.menu = 'horizontal' : this.settings.menu = 'vertical'
+      (this.defaultMenu == 'horizontal') ?
+          this.settings.menu = 'horizontal' : this.settings.menu = 'vertical'
       this.settings.sidenavIsOpened = true;
       this.settings.sidenavIsPinned = true;
     }

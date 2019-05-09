@@ -5,6 +5,9 @@ import { Settings } from '../../../app.settings.model';
 import { LandingService } from '../landing.service';
 import {ApiService} from "../services/api-service.service";
 import {forkJoin} from "rxjs";
+import {UserDialogComponent} from "../../users/user-dialog/user-dialog.component";
+import {MatDialog} from "@angular/material";
+import {UserInfoDialogComponent} from "./user-info-dialog/user-info-dialog.component";
 
 @Component({
   selector: 'app-testimonials',
@@ -19,7 +22,7 @@ export class TestimonialsComponent implements OnInit {
   public settings: Settings;
   junta: any[];
   centros: any[];
-  constructor(public appSettings:AppSettings, private landingService:LandingService, private apiService:ApiService) {
+  constructor(public appSettings:AppSettings, public dialog: MatDialog, private landingService:LandingService, private apiService:ApiService) {
     this.settings = this.appSettings.settings; 
   }
 
@@ -63,5 +66,14 @@ export class TestimonialsComponent implements OnInit {
           this.junta = res2['results']
       })
   }
+
+    public openMemberDialog(member){
+        let dialogRef = this.dialog.open(UserInfoDialogComponent, {
+            data: member
+        });
+        dialogRef.afterClosed().subscribe(user => {
+
+        });
+    }
 
 }

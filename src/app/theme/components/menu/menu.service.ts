@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Menu } from './menu.model';
-import { verticalMenuItems, horizontalMenuItems } from './menu';
+import { verticalMenuItems} from './menu';
 
 @Injectable()
 export class MenuService {
@@ -14,11 +14,6 @@ export class MenuService {
   public getVerticalMenuItems():Array<Menu> {
     return verticalMenuItems;
   }
-
-  public getHorizontalMenuItems():Array<Menu> {
-    return horizontalMenuItems;
-  }
-
   public expandActiveSubMenu(menu:Array<Menu>){
       let url = this.location.path();
       let routerLink = url; // url.substring(1, url.length);

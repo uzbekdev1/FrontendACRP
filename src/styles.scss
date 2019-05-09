@@ -7,6 +7,9 @@
 @import '~@angular/material/prebuilt-themes/purple-green.css';
 
 
+$material-icons-font-path: '~material-icons/iconfont/';
+@import '~material-icons/iconfont/material-icons.scss';
+
 @import "app/theme/styles/base";
 @import "app/theme/styles/spaces";
 @import "app/theme/styles/libs-override";

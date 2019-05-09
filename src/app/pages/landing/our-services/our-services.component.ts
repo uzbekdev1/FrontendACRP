@@ -4,6 +4,7 @@ import { AppSettings } from '../../../app.settings';
 import { Settings } from '../../../app.settings.model';
 import { LandingService } from '../landing.service';
 import {ApiService} from "../services/api-service.service";
+import {Evento} from "../../eventos/eventos.model";
 
 @Component({
   selector: 'app-our-services',
@@ -37,8 +38,8 @@ export class OurServicesComponent implements OnInit {
       custom: 'banner',
       RTL: this.settings.rtl
     };
-    this.apiService.getEventos().subscribe((res)=>{
-      this.eventos = res['results']
+    this.apiService.getEventos().subscribe((res: Evento[])=>{
+      this.eventos = res
     })
   }
 

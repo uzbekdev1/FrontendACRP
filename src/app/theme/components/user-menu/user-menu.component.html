@@ -1,15 +1,15 @@
-<button mat-icon-button [matMenuTriggerFor]="userMenu" #userMenuTrigger="matMenuTrigger" >
+<button  mat-icon-button [matMenuTriggerFor]="userMenu" #userMenuTrigger="matMenuTrigger" >
     <mat-icon>account_circle</mat-icon>
 </button>
 
-<mat-menu #userMenu="matMenu" [overlapTrigger]="false" class="toolbar-dropdown-menu user-menu">
+<mat-menu  #userMenu="matMenu" [overlapTrigger]="false" class="toolbar-dropdown-menu user-menu">
     <!--<span (mouseleave)="userMenuTrigger.closeMenu()">-->        
-        <mat-card fxLayout="row" fxLayoutAlign="space-around center" class="user-info p-0">
-            <img [src]="userImage" alt="user-image">
+        <mat-card *ngIf="memberActive" fxLayout="row" fxLayoutAlign="space-around center" class="user-info p-0">
+            <img [src]="memberActive.foto" alt="user-image">
             <div fxLayout="column" fxLayoutAlign="center center">
-                <h2>Emilio Verdines</h2>
-                <h3 class="secondary-text-color">Web developer</h3>
-                <p class="secondary-text-color">Member since May. 2016</p>
+                <h2>{{memberActive.usuario.first_name}} {{memberActive.usuario.last_name}}</h2>
+                <h3 class="secondary-text-color">{{memberActive.centro.nombre}}</h3>
+                <p class="secondary-text-color">Miembro desde {{memberActive.usuario.date_joined | date: 'dd/MM/yyyy'}}</p>
             </div>
         </mat-card>  
         <mat-divider></mat-divider>
@@ -30,7 +30,7 @@
             <span>Help</span> 
         </a>
         <mat-divider></mat-divider>
-        <a mat-menu-item routerLink="/login"> 
+        <a mat-menu-item (click)="logout()" >
             <mat-icon>power_settings_new</mat-icon>
             <span>Log out</span> 
         </a>

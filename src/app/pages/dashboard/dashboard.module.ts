@@ -12,9 +12,10 @@ import { DiskSpaceComponent } from './disk-space/disk-space.component';
 import { TodoComponent } from './todo/todo.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { TeamComponent } from './team/team.component';
+import {AuthGuard} from "../../shared/guard/auth-guard.service";
 
 export const routes = [
-  { path: '', component: DashboardComponent, pathMatch: 'full' }
+  { path: '',canActivate: [AuthGuard], component: DashboardComponent, pathMatch: 'full' }
 ];
 
 @NgModule({

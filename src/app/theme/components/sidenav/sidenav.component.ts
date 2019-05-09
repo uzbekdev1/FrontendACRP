@@ -3,6 +3,10 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { AppSettings } from '../../../app.settings';
 import { Settings } from '../../../app.settings.model';
 import { MenuService } from '../menu/menu.service';
+import {UsersService} from "../../../pages/users/users.service";
+import {Member} from "../../../pages/users/user.model";
+import {AuthService} from "../../../pages/login/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sidenav',
@@ -17,12 +21,15 @@ export class SidenavComponent implements OnInit {
   };
   public menuItems:Array<any>;
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public menuService:MenuService){
+    public memberActive: Member;
+  constructor(public appSettings:AppSettings, public menuService:MenuService,
+              private memberService: UsersService){
       this.settings = this.appSettings.settings; 
   }
 
   ngOnInit() {
-    this.menuItems = this.menuService.getVerticalMenuItems();    
+    this.menuItems = this.menuService.getVerticalMenuItems();
+      this.memberService.getMemberActive().subscribe((member: Member)=>this.memberActive = member);
   }
 
   ngDoCheck(){

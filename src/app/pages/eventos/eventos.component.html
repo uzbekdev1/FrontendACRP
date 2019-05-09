@@ -1,0 +1,74 @@
+<app-content-header
+        [icon]="'event'"
+        [title]="'Eventos'"
+        [desc]="'Listado de los eventos, edite, elimine o añada'"
+        [hideBreadcrumb]="false"
+        [hasBgImage]="true"
+        [class]="'pb-5'"></app-content-header>
+
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="px-2 member-toolbar">
+    <div fxLayout="row">
+        <button mat-icon-button (click)="openEventoDialog(null)">
+            <mat-icon>add_box</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+
+<div class="members-wrapper p-2">
+    <div *ngIf="viewType == 'grid' && eventos" fxLayout="row wrap">
+        <div *ngFor="let evento of eventos" fxFlex="100" fxFlex.gt-md="33.3" fxFlex.md="50" fxFlex.sm="50" class="p-2">
+            <mat-card fxLayout="row" class="p-0 member-content">
+                <div fxFlex="100" class="event-details">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <h4 *ngIf="evento.nombre" class="member-name px-2">{{evento.nombre}}</h4>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                    </div>
+                    <mat-menu #menu="matMenu" xPosition="before" overlapTrigger="true">
+                        <span (mouseleave)="menuTrigger.closeMenu()">
+                            <button mat-menu-item (click)="openEventoDialog(evento)">
+                                <mat-icon>mode_edit</mat-icon>
+                                <span>Editar</span>
+                            </button>
+                            <button mat-menu-item (click)="deleteEvento(evento);">
+                                <mat-icon>delete</mat-icon>
+                                <span>Eliminar</span>
+                            </button>
+                        </span>
+                    </mat-menu>
+                    <mat-divider></mat-divider><br>
+                    <div class="info-list mx-2" >
+                        <p fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text-color">event</mat-icon>
+                            <span> {{evento.fecha | date: 'dd/MM/yyyy'}}</span>
+                        </p>
+                        <p fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text-color">card_membership</mat-icon>
+                            <span>{{evento.categoria}}</span>
+                        </p>
+                        <p fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text-color">account_balance</mat-icon>
+                            <span>  <strong>{{evento.centro.nombre}}</strong></span>
+                        </p>
+                        <p fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text-color">place</mat-icon>
+                            <span> {{evento.direccion}}</span>
+                        </p>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <div *ngIf="eventos" fxLayout="row wrap">
+        <div fxFlex="100" class="p-2">
+            <mat-card class="p-0 text-center">
+                <pagination-controls class="annular-pagination" autoHide="true" maxSize="3"
+                                     (pageChange)="onPageChanged($event)"></pagination-controls>
+            </mat-card>
+        </div>
+    </div>
+    <div *ngIf="!eventos" fxLayout="column" fxLayoutAlign="center center" class="member-spinner">
+        <mat-spinner color="accent"></mat-spinner>
+    </div>
+</div>

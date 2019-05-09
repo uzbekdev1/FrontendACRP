@@ -82,7 +82,7 @@ body {
     min-width: calc(#{$sidenav-width} - 16px);
     color: #fff; 
     img{
-        width: 34px;  
+        width: 120px;
     }
     &.mobile{
         min-width: calc(#{$mini-sidenav-width} - 16px); 
@@ -210,7 +210,7 @@ body {
     }
     &.mini{
         .logo{   
-            min-width: calc(#{$mini-sidenav-width} - 16px); 
+            min-width: calc(#{$mini-sidenav-width} - 16px);
             span{
                 display: none;
             }   

@@ -3,10 +3,11 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ResponseContentType} from "@angular/http";
 import {map} from "rxjs/operators";
+import {environment} from "../../../../environments/environment";
+import {Evento} from "../../eventos/eventos.model";
 
 @Injectable()
 export class ApiService {
-    token: string;
 
     headers: HttpHeaders;
 
@@ -19,31 +20,39 @@ export class ApiService {
     }
 
     getMiembros(): Observable<Object> {
-        return this.http.get(`http://127.0.0.1:8000/api/miembro/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}miembro/`,{headers: this.headers});
     }
 
     getCentros(): Observable<Object> {
-        return this.http.get(`http://127.0.0.1:8000/api/centro/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}centro/`,{headers: this.headers});
     }
 
     getEventos(): Observable<Object> {
-        return this.http.get(`http://127.0.0.1:8000/api/evento/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}evento/`,{headers: this.headers}).
+        pipe(map((res:any)=>res.results),
+            map((eventos:Evento[])=>
+                eventos.map((evento)=>{
+                    evento.fecha = new Date(evento.fecha)
+                    return evento;
+                })
+            )
+        );
     }
 
     getNoticia(): Observable<Object> {
-        return this.http.get(`http://127.0.0.1:8000/api/noticia/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}noticia/`,{headers: this.headers});
     }
 
     getPublicacion(): Observable<Object> {
-        return this.http.get(`http://127.0.0.1:8000/api/publicacion/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}publicacion/`,{headers: this.headers});
     }
 
     getBoletines(): Observable<Object> {
-        return this.http.get(`http://127.0.0.1:8000/api/boletin/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}boletin/`,{headers: this.headers});
     }
 
     getProyecto(): Observable<Object> {
-        return this.http.get(`http://127.0.0.1:8000/api/proyecto/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}proyecto/`,{headers: this.headers});
     }
 
     downloadPDF(url): any {

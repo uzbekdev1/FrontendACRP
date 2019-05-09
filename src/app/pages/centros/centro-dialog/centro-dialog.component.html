@@ -1,0 +1,25 @@
+<h1 mat-dialog-title><span *ngIf="!center.id">Añadir</span><span *ngIf="center.id">Editar</span> Centro</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" class="user-form">      
+        <mat-tab-group class="vertical-tabs">
+            <mat-tab label="Información">
+                <div fxLayout="column" class="form-field-outer">
+                    <div>
+                        <button mat-button (click)="inputFile.click()">Suba un logo</button> {{ inputFile.value }}
+                        <input #inputFile type="file" [style.display]="'none'" (change)="onFileChange(inputFile.files)">
+                    </div>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Nombre" formControlName="nombre">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Dirección" formControlName="direccion">
+                    </mat-form-field>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]="!form.valid"><span *ngIf="center && !center.id">Crear</span><span *ngIf="center && center.id">Actualizar</span></button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+</div>

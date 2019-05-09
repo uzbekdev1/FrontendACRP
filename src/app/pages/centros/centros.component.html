@@ -1,0 +1,69 @@
+<app-content-header 
+    [icon]="'account_balance'"
+    [title]="'Centros'"
+    [desc]="'Observe la lista de los centros asociados a la ACRP, edite, elimine o añada'"
+    [hideBreadcrumb]="false"
+    [hasBgImage]="true" 
+    [class]="'pb-5'"></app-content-header>
+
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="px-2 member-toolbar">
+    <div fxLayout="row">
+        <button mat-icon-button (click)="openCenterDialog(null)">
+            <mat-icon>add_location</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+
+<div class="members-wrapper p-2" >
+    <div *ngIf="viewType == 'grid' && centers" fxLayout="row wrap">
+        <div *ngFor="let center of centers" fxFlex="100" fxFlex.gt-md="33.3" fxFlex.md="50" fxFlex.sm="50" class="p-2">
+            <mat-card fxLayout="row" class="p-0 member-content">  
+                <div  fxLayoutAlign="center center" class="bg-primary" >
+                    <div class="member-img">
+                        <img *ngIf="center.logo" [src]="center.logo" class="transition mb-2">
+                        <img *ngIf="!center.logo" src="assets/img/members/default-member.jpg" class="transition mb-2" >
+                        <div fxLayout="row" fxLayoutAlign="center center" class="social-icons">
+                        </div>
+                    </div>
+                </div>       
+                <div fxFlex="65" class="member-details">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <h4 *ngIf="center.nombre" class="member-name px-2">{{center.nombre}}</h4>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                    </div>                  
+                    <mat-menu #menu="matMenu" xPosition="before" overlapTrigger="true">
+                        <span (mouseleave)="menuTrigger.closeMenu()">
+                            <button mat-menu-item (click)="openCenterDialog(center)">
+                                <mat-icon>mode_edit</mat-icon>
+                                <span>Editar</span>
+                            </button>
+                            <button mat-menu-item (click)="deleteCenter(center);">
+                                <mat-icon>Eliminar</mat-icon>
+                                <span>Delete</span>
+                            </button>
+                        </span>
+                    </mat-menu>
+                    <mat-divider ></mat-divider>
+                    <div class="info-list mx-2" >
+                        <p fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text-color">card_membership</mat-icon>
+                            <span>{{center.direccion}}</span>
+                        </p>
+                    </div>                    
+                </div>
+            </mat-card>        
+        </div>
+    </div>
+    <div *ngIf="centers" fxLayout="row wrap">
+        <div fxFlex="100" class="p-2"> 
+            <mat-card class="p-0 text-center">           
+                <pagination-controls class="annular-pagination" autoHide="true" maxSize="3" (pageChange)="onPageChanged($event)"></pagination-controls>
+            </mat-card>
+        </div>
+    </div>    
+    <div *ngIf="!centers" fxLayout="column" fxLayoutAlign="center center" class="member-spinner">
+        <mat-spinner color="accent"></mat-spinner>    
+    </div>   
+</div>

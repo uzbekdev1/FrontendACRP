@@ -1,0 +1,84 @@
+<app-content-header
+        [icon]="'book'"
+        [title]="'Boletines'"
+        [desc]="'Listado de los boletines, edite, elimine o añada'"
+        [hideBreadcrumb]="false"
+        [hasBgImage]="true"
+        [class]="'pb-5'"></app-content-header>
+
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="px-2 member-toolbar">
+    <div fxLayout="row">
+        <button mat-icon-button (click)="openBoletinDialog(null)">
+            <mat-icon>note_add</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+
+<div class="members-wrapper p-2">
+    <div *ngIf="viewType == 'list'" fxLayout="row wrap">
+        <div *ngFor="let boletin of boletines" fxFlex="100" class="p-2">
+            <mat-card class="p-0 user-content">
+                <div fxFlex="100" fxFlex.xs="70" fxLayout="row wrap" fxLayout.xs="column" class="user-details">
+                    <div class="w-100">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="row" class="w-100"  fxLayoutAlign="space-between center">
+                                <h4 class="user-name px-2"><strong>{{boletin.titulo}}</strong>  publicado el {{boletin.fecha | date: 'dd/MM/yyyy'}}</h4>
+                            </div>
+                            <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <mat-menu #menu="matMenu" xPosition="before" overlapTrigger="true">
+                            <span (mouseleave)="menuTrigger.closeMenu()">
+                                <button mat-menu-item (click)="openBoletinDialog(boletin)">
+                                    <mat-icon>mode_edit</mat-icon>
+                                    <span>Edit</span>
+                                </button>
+                                <button mat-menu-item (click)="deleteProyecto(boletin);">
+                                    <mat-icon>delete</mat-icon>
+                                    <span>Delete</span>
+                                </button>
+                                <button mat-menu-item (click)="downloadPdf(boletin.pdf);">
+                                    <mat-icon>get_app</mat-icon>
+                                    <span>Descargar PDF</span>
+                                </button>
+                            </span>
+                        </mat-menu>
+                        <mat-divider></mat-divider>
+                    </div>
+                    <div fxFlex="50" fxFlex.xs="100" fxLayout="column" class="info-list px-2">
+                        <p fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text-color">business</mat-icon>
+                            <span>{{boletin.categoria}}</span>
+                        </p>
+                        <p fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text-color">card_membership</mat-icon>
+                            <span>{{boletin.descripcion}}</span>
+                        </p>
+                    </div>
+                    <div fxFlex="50" fxFlex.xs="100" fxLayout="column" class="info-list px-2">
+                        <p fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text-color">people</mat-icon>
+                            <span>autores</span>
+                        </p>
+                        <p fxLayout="row" fxLayoutAlign="start center" *ngFor="let autor of boletin.miembros">
+                            <mat-icon class="secondary-text-color">subdirectory_arrow_right</mat-icon>
+                            <span>{{autor.usuario.first_name}} {{autor.usuario.last_name}}</span>
+                        </p>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <div *ngIf="boletines" fxLayout="row wrap">
+        <div fxFlex="100" class="p-2">
+            <mat-card class="p-0 text-center">
+                <pagination-controls class="annular-pagination" autoHide="true" maxSize="3"
+                                     (pageChange)="onPageChanged($event)"></pagination-controls>
+            </mat-card>
+        </div>
+    </div>
+    <div *ngIf="!boletines" fxLayout="column" fxLayoutAlign="center center" class="member-spinner">
+        <mat-spinner color="accent"></mat-spinner>
+    </div>
+</div>

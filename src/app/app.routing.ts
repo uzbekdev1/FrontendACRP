@@ -6,27 +6,21 @@ import { BlankComponent } from './pages/blank/blank.component';
 import { SearchComponent } from './pages/search/search.component';
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 import { ErrorComponent } from './pages/errors/error/error.component';
+import {AuthGuard} from "./shared/guard/auth-guard.service";
 
 export const routes: Routes = [
     {
-        path: 'dashboard',
-        component: PagesComponent, children: [
+        path: 'home',
+        component: PagesComponent,  canActivate: [AuthGuard], children: [
             { path: '', loadChildren: './pages/dashboard/dashboard.module#DashboardModule', data: { breadcrumb: 'Dashboard' } },
-            { path: 'users', loadChildren: './pages/users/users.module#UsersModule', data: { breadcrumb: 'Users' } },
-            { path: 'dynamic-menu', loadChildren: './pages/dynamic-menu/dynamic-menu.module#DynamicMenuModule', data: { breadcrumb: 'Dynamic Menu' }  },
-            { path: 'ui', loadChildren: './pages/ui/ui.module#UiModule', data: { breadcrumb: 'UI' } },
-            { path: 'mailbox', loadChildren: './pages/mailbox/mailbox.module#MailboxModule', data: { breadcrumb: 'Mailbox' } },
-            { path: 'chat', loadChildren: './pages/chat/chat.module#ChatModule', data: { breadcrumb: 'Chat' } },
-            { path: 'form-controls', loadChildren: './pages/form-controls/form-controls.module#FormControlsModule', data: { breadcrumb: 'Form Controls' } },
-            { path: 'tables', loadChildren: './pages/tables/tables.module#TablesModule', data: { breadcrumb: 'Tables' } },
-            { path: 'schedule', loadChildren: './pages/schedule/schedule.module#ScheduleModule', data: { breadcrumb: 'Schedule' } },
-            { path: 'maps', loadChildren: './pages/maps/maps.module#MapsModule', data: { breadcrumb: 'Maps' } },
-            { path: 'charts', loadChildren: './pages/charts/charts.module#ChartsModule', data: { breadcrumb: 'Charts' } },
-            { path: 'drag-drop', loadChildren: './pages/drag-drop/drag-drop.module#DragDropModule', data: { breadcrumb: 'Drag & Drop' } },
-            { path: 'icons', loadChildren: './pages/icons/icons.module#IconsModule', data: { breadcrumb: 'Material Icons' } },
-            { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } },
-            { path: 'search', component: SearchComponent, data: { breadcrumb: 'Search' } },
-            { path: 'search/:name', component: SearchComponent, data: { breadcrumb: 'Search' } }
+            { path: 'centros', loadChildren: './pages/centros/centros.module#CentrosModule', data: { breadcrumb: 'Centros' } },
+            { path: 'miembros', loadChildren: './pages/users/users.module#UsersModule', data: { breadcrumb: 'Miembros' } },
+            { path: 'proyectos', loadChildren: './pages/proyectos/proyectos.module#ProyectosModule', data: { breadcrumb: 'Proyectos' }  },
+            { path: 'publicaciones', loadChildren: './pages/publicaciones/publicaciones.module#PublicacionesModule', data: { breadcrumb: 'Publicaciones' } },
+            { path: 'boletines', loadChildren: './pages/boletines/boletines.module#BoletinesModule', data: { breadcrumb: 'Boletines' } },
+            { path: 'eventos', loadChildren: './pages/eventos/eventos.module#EventosModule', data: { breadcrumb: 'Eventos' } },
+            { path: 'noticias', loadChildren: './pages/noticias/noticias.module#NoticiasModule', data: { breadcrumb: 'Noticias' } },
+
         ]
     },
     { path: '', loadChildren: './pages/landing/landing.module#LandingModule' },

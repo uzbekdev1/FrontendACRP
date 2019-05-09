@@ -1,0 +1,28 @@
+<h1 mat-dialog-title><span *ngIf="!noticia.id">Añadir</span><span *ngIf="noticia.id">Editar</span> Noticia</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" class="user-form">      
+        <mat-tab-group class="vertical-tabs">
+            <mat-tab label="Información">
+                <div fxLayout="column" class="form-field-outer">
+                    <div>
+                        <button mat-button (click)="inputFile.click()">Suba una Imagen</button> {{ inputFile.value }}
+                        <input #inputFile type="file" [style.display]="'none'" (change)="onFileChange(inputFile.files)">
+                    </div>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Título" formControlName="titulo">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Cetegoría" formControlName="categoria">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <textarea rows="4" matInput placeholder="Descripción" formControlName="descripcion"></textarea>
+                    </mat-form-field>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]="!form.valid"><span *ngIf="noticia && !noticia.id">Crear</span><span *ngIf="noticia && noticia.id">Actualizar</span></button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+</div>

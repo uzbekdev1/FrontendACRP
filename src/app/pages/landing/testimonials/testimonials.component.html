@@ -39,7 +39,8 @@
     </ngu-carousel>
     <ngu-carousel *ngIf="junta" #testimonialsCarousel [inputs]="testimonialsCarouselConfig" [dataSource]="junta">
         <ngu-tile *nguCarouselDef="let member; let j = index">
-            <mat-card class="testimonial-item">
+            <mat-card class="testimonial-item" >
+                      <!--(click)="openMemberDialog(member)"-->
                 <img [src]="member.foto" alt="image" class="mat-elevation-z2">
                 <h2>{{member.usuario.first_name}} {{member.usuario.last_name}}</h2>
                 <p class="text secondary-text-color my-3">"{{member.resumenCV}}"</p>

@@ -1,12 +1,24 @@
+export class Member{
+  id: number;
+  usuario: User;
+  activo: boolean;
+  centro: any;
+  categoria: string;
+  resumenCV: string;
+  foto: string;
+  proyectos: any[];
+  publicaciones: any[];
+  boletines: any[];
+}
+
 export class User {
   id: number;
   username: string;
-  password: string;  
-  profile: UserProfile;
-  work: UserWork;
-  contacts: UserContacts;
-  social: UserSocial;
-  settings: UserSettings;
+  password: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  date_joined: Date;
 }
 
 export class UserProfile {  

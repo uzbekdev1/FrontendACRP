@@ -1,0 +1,37 @@
+<h1 mat-dialog-title><span *ngIf="!proyecto.id">Añadir</span><span *ngIf="proyecto.id">Editar</span> Proyecto</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" class="user-form">
+        <mat-tab-group class="vertical-tabs">
+            <mat-tab label="Información">
+                <div fxLayout="column" class="form-field-outer">
+                    <div>
+                        <button mat-button (click)="inputFile.click()">Suba el documento pdf</button>
+                        {{ inputFile.value }}
+                        <input #inputFile type="file" [style.display]="'none'" (change)="onFileChange(inputFile.files)">
+                    </div>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Título" formControlName="titulo">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Categoría" formControlName="categoria">
+                    </mat-form-field>
+                    <mat-form-field id="search-input" class="hide-theme-color" floatLabel="never" color="accent">
+                        <mat-select formControlName="miembros" multiple placeholder="Miembros">
+                            <mat-option *ngFor="let member of members" [value]="member.id">
+                                {{member.usuario.first_name}} {{member.usuario.last_name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field  appearance="outline" class="w-100">
+                        <textarea matInput rows="4" placeholder="Descripción" formControlName="descripcion"></textarea>
+                    </mat-form-field>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]="!form.valid"><span
+            *ngIf="proyecto && !proyecto.id">Crear</span><span *ngIf="proyecto && proyecto.id">Actualizar</span></button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+</div>

@@ -27,7 +27,7 @@
             </div> 
         </div>                          
     </div>
-    <div fxFlex="100" fxFlex.gt-sm="35" fxFlex.sm="50" ngClass.xs="pb-4" class="top-contact-form col">
+    <div fxFlex="100" fxFlex.gt-sm="50" fxFlex.sm="50" ngClass.xs="pb-4" class="top-contact-form col">
         <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap" class="px-2">            
             <div fxFlex="100" class="">
                 <mat-form-field class="w-100">
@@ -50,16 +50,9 @@
             </div> 
             <div class="w-100 mt-1 text-center">
                 <button mat-raised-button color="accent" type="submit">
-                    <mat-icon class="mr-2">send</mat-icon>Send
+                    <mat-icon class="mr-2">send</mat-icon>Enviar mensaje
                 </button>
             </div> 
         </form>
     </div>
-    <div fxFlex="50" fxFlex.gt-sm="25" fxShow="false" fxShow.gt-xs class="py-3 col">
-        <div fxLayout="column" fxLayoutAlign="center start" class="controls secondary-text-color">
-            <mat-checkbox *ngFor="let control of controls" class="my-1" [(ngModel)]="control.checked" labelPosition="after">
-                {{control.name}}
-            </mat-checkbox>
-        </div>
-    </div>    
 </div>
