@@ -26,8 +26,9 @@ export class UsersService {
         return this.http.get<Member>(`${environment.apiBase}miembro/${id}/`,{headers: this.headers})
     }
     getMemberActive(): Observable<Member> {
-        return this.http.get<Member>(`${environment.apiBase}miembro/`,{headers: this.headers}).pipe(
-            map((res: any)=> res.results[0])
+        const memberActiveId = localStorage.getItem('miembro_id')
+        return this.http.get<Member>(`${environment.apiBase}miembro/${memberActiveId}/`,{headers: this.headers}).pipe(
+            map((res: any)=> res)
         );
     }
     // addUser(user:User){

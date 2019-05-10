@@ -13,8 +13,7 @@ import {AuthService} from "./auth.service";
 export class LoginComponent {
   public form:FormGroup;
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public fb: FormBuilder,
-              public router:Router, private authService: AuthService){
+  constructor(public appSettings:AppSettings, public fb: FormBuilder, private authService: AuthService){
     this.settings = this.appSettings.settings; 
     this.form = this.fb.group({
       'username': [null, Validators.compose([Validators.required])],
@@ -25,8 +24,6 @@ export class LoginComponent {
   public onSubmit(values:Object):void {
     if (this.form.valid) {
       this.authService.login(this.form.getRawValue())
-        if(this.authService.isAuthenticated())
-            this.router.navigate(['/home'])
     }
   }
 
