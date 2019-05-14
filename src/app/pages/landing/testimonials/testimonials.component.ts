@@ -61,7 +61,7 @@ export class TestimonialsComponent implements OnInit {
     };
       forkJoin(
           this.apiService.getCentros(),
-          this.apiService.getMiembros()).subscribe(([res1, res2]: [any[], any[]]) => {
+          this.apiService.getJuntaDirectiva()).subscribe(([res1, res2]: [any[], any[]]) => {
           this.centros = res1['results']
           this.junta = res2['results']
       })

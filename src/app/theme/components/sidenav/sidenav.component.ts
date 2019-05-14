@@ -23,13 +23,13 @@ export class SidenavComponent implements OnInit {
   public settings: Settings;
     public memberActive: Member;
   constructor(public appSettings:AppSettings, public menuService:MenuService,
-              private memberService: UsersService){
+              private authService: AuthService){
       this.settings = this.appSettings.settings; 
   }
 
   ngOnInit() {
     this.menuItems = this.menuService.getVerticalMenuItems();
-      this.memberService.getMemberActive().subscribe((member: Member)=>this.memberActive = member);
+      this.authService.getMemberActive.subscribe((member: Member)=>this.memberActive = member);
   }
 
   ngDoCheck(){

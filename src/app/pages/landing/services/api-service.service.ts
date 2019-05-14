@@ -5,6 +5,7 @@ import {ResponseContentType} from "@angular/http";
 import {map} from "rxjs/operators";
 import {environment} from "../../../../environments/environment";
 import {Evento} from "../../eventos/eventos.model";
+import {Member} from "../../users/user.model";
 
 @Injectable()
 export class ApiService {
@@ -20,18 +21,21 @@ export class ApiService {
     }
 
     getMiembros(): Observable<Object> {
-        return this.http.get(`${environment.apiBase}miembro/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}miembro/`, {headers: this.headers});
+    }
+
+    getJuntaDirectiva(): Observable<Object> {
+        return this.http.get(`${environment.apiBase}juntaDirectiva/`, {headers: this.headers});
     }
 
     getCentros(): Observable<Object> {
-        return this.http.get(`${environment.apiBase}centro/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}centro/`, {headers: this.headers});
     }
 
     getEventos(): Observable<Object> {
-        return this.http.get(`${environment.apiBase}evento/`,{headers: this.headers}).
-        pipe(map((res:any)=>res.results),
-            map((eventos:Evento[])=>
-                eventos.map((evento)=>{
+        return this.http.get(`${environment.apiBase}evento/`, {headers: this.headers}).pipe(map((res: any) => res.results),
+            map((eventos: Evento[]) =>
+                eventos.map((evento) => {
                     evento.fecha = new Date(evento.fecha)
                     return evento;
                 })
@@ -40,27 +44,41 @@ export class ApiService {
     }
 
     getNoticia(): Observable<Object> {
-        return this.http.get(`${environment.apiBase}noticia/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}noticia/`, {headers: this.headers});
     }
 
     getPublicacion(): Observable<Object> {
-        return this.http.get(`${environment.apiBase}publicacion/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}publicacion/`, {headers: this.headers});
     }
 
     getBoletines(): Observable<Object> {
-        return this.http.get(`${environment.apiBase}boletin/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}boletin/`, {headers: this.headers});
     }
 
     getProyecto(): Observable<Object> {
-        return this.http.get(`${environment.apiBase}proyecto/`,{headers: this.headers});
+        return this.http.get(`${environment.apiBase}proyecto/`, {headers: this.headers});
     }
 
     downloadPDF(url): any {
-       return this.http.get(url, {responseType: 'blob'}).pipe(map(
+        return this.http.get(url, {responseType: 'blob'}).pipe(map(
             (res: any) => {
-                return new Blob([res.blob()], { type: 'application/pdf' });
+                return new Blob([res.blob()], {type: 'application/pdf'});
             })
         );
     }
 
+    sendMensaje(mensaje: any) {
+        const form: FormData = new FormData()
+        form.append('nombreRemitente', mensaje.nombreRemitente)
+        form.append('correoRemitente', mensaje.correoRemitente)
+        form.append('telefonoRemitente', mensaje.telefonoRemitente)
+        form.append('fecha', new Date().toISOString().substr(0, 10))
+        form.append('mensaje', mensaje.mensaje)
+        this.getJuntaDirectiva().subscribe((miembros: any) => {
+            miembros.results.map((miembro: Member) => {
+                form.append('miembros', miembro.id.toString())
+            })
+            this.http.post<any>(`${environment.apiBase}mensaje/`, form).subscribe();
+        })
+    }
 }

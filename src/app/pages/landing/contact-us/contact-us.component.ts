@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailValidator } from '../../../theme/utils/app-validators';
+import {ApiService} from "../services/api-service.service";
 
 @Component({
   selector: 'app-contact-us',
@@ -13,20 +14,20 @@ export class ContactUsComponent implements OnInit {
   public zoom: number = 12;
   public contactForm: FormGroup;
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder, private apiService: ApiService) { }
 
   ngOnInit() {
     this.contactForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.compose([Validators.required, emailValidator])],
-      phone: ['', Validators.required],
-      message: ['', Validators.required]
+        nombreRemitente: ['', Validators.required],
+        correoRemitente: ['', Validators.compose([Validators.required, emailValidator])],
+        telefonoRemitente: ['', Validators.required],
+        mensaje: ['', Validators.required]
     });
   }
 
   public onContactFormSubmit(values:Object):void {
     if (this.contactForm.valid) {
-      console.log(values);
+      this.apiService.sendMensaje(values)
     }
   }
 

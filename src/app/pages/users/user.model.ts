@@ -1,14 +1,21 @@
+import {Proyecto} from "../proyectos/proyectos.model";
+import {Publicacion} from "../publicaciones/publicaciones.model";
+import {Boletin} from "../boletines/boletines.model";
+import {Mensaje} from "../../theme/components/messages/mensaje.model";
+
 export class Member{
   id: number;
   usuario: User;
   activo: boolean;
+  cargo: string;
   centro: any;
   categoria: string;
   resumenCV: string;
   foto: string;
-  proyectos: any[];
-  publicaciones: any[];
-  boletines: any[];
+  proyectos: Proyecto[];
+  publicaciones: Publicacion[];
+  boletines: Boletin[];
+  mensajes: Mensaje[];
 }
 
 export class User {
@@ -19,37 +26,4 @@ export class User {
   last_name: string;
   email: string;
   date_joined: Date;
-}
-
-export class UserProfile {  
-  name: string;
-  surname: string;  
-  birthday: Object;
-  gender: string;
-  image: string;
-}
-
-export class UserWork {
-  company: string;
-  position: string;
-  salary: number;
-}
-
-export class UserContacts{
-  email: string;
-  phone: string;
-  address: string;  
-}
-
-export class UserSocial {
-  facebook: string;
-  twitter: string;
-  google: string;
-}
-
-export class UserSettings{
-  isActive: boolean;
-  isDeleted: boolean;
-  registrationDate: Date;
-  joinedDate: Date;
 }

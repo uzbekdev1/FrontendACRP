@@ -27,7 +27,6 @@ export class UsersComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('qwaa')
         this.getMembers();
     }
 
@@ -35,7 +34,6 @@ export class UsersComponent implements OnInit {
         this.members = null; //for show spinner each time
         this.usersService.getMembers().subscribe(users => {
             this.members = users;
-            console.log('miembros',this.members)
             });
     }
     // public addUser(user:User){

@@ -4,7 +4,10 @@ import { MessagesService } from './messages.service';
 import {ApiService} from "../../../pages/landing/services/api-service.service";
 import {Evento} from "../../../pages/eventos/eventos.model";
 import {promise} from "selenium-webdriver";
-import {map} from "rxjs/operators";
+import {map, skip} from "rxjs/operators";
+import {AuthService} from "../../../pages/login/auth.service";
+import {Mensaje} from "./mensaje.model";
+import {Member} from "../../../pages/users/user.model";
 
 @Component({
   selector: 'app-messages',
@@ -16,9 +19,7 @@ import {map} from "rxjs/operators";
 export class MessagesComponent implements OnInit {  
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   public selectedTab:number=1;
-  public messages:Array<Object>;
-  public files:Array<Object>;
-  public meetings:Array<Object>;
+  public messages:Mensaje[];
   public eventos: Evento[];
     public colors = [
         {value: 'gradient-purple', viewValue: 'Purple'},
@@ -34,13 +35,16 @@ export class MessagesComponent implements OnInit {
         {value: 'gradient-brown', viewValue: 'Brown'},
         {value: 'gradient-lime', viewValue: 'Lime'}
     ];
-  constructor(private messagesService:MessagesService, private apiService: ApiService) {
-    this.messages = messagesService.getMessages();
-    this.files = messagesService.getFiles();
-    this.meetings = messagesService.getMeetings();
+  constructor(private authService: AuthService, private apiService: ApiService) {
+
     this.apiService.getEventos().subscribe((eventos: Evento[])=>{
         this.eventos = eventos;
     })
+      this.authService.getMemberActive.pipe(skip(1))
+          .subscribe((memberActive:Member)=>{
+          console.log(memberActive)
+          this.messages = memberActive.mensajes
+      })
   }
 
   ngOnInit() {

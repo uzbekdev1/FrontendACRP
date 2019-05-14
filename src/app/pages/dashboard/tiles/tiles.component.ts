@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-tiles',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tiles.component.scss']
 })
 export class TilesComponent implements OnInit {
-
+@Input() memberActive
   constructor() { }
 
   ngOnInit() {

@@ -10,27 +10,27 @@
                 <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
                     <div fxFlex="100" class="mt-2">
                         <mat-form-field class="w-100">
-                            <input matInput placeholder="Nombre" formControlName="name" required>
-                            <mat-error *ngIf="contactForm.controls.name.errors?.required">Su nombre es necesario</mat-error>
+                            <input matInput placeholder="Nombre" formControlName="nombreRemitente" required>
+                            <mat-error *ngIf="contactForm.controls.nombreRemitente.errors?.required">Su nombre es necesario</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxFlex="100" class="mt-2">
                         <mat-form-field class="w-100">
-                            <input matInput placeholder="Correo ELectrónico" formControlName="email" required>
-                            <mat-error *ngIf="contactForm.controls.email.errors?.required">Su dirección de correo electrónico es necesaria</mat-error>
-                            <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Dirección de Correo Electrónico incorrecta</mat-error>
+                            <input matInput placeholder="Correo ELectrónico" formControlName="correoRemitente" required>
+                            <mat-error *ngIf="contactForm.controls.correoRemitente.errors?.required">Su dirección de correo electrónico es necesaria</mat-error>
+                            <mat-error *ngIf="contactForm.controls.correoRemitente.hasError('invalidEmail')">Dirección de Correo Electrónico incorrecta</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxFlex="100" class="mt-2">
                         <mat-form-field class="w-100">
-                            <input matInput placeholder="Teléfono" formControlName="phone" required>
-                            <mat-error *ngIf="contactForm.controls.phone.errors?.required">Su número de teléfono es necesario</mat-error>
+                            <input matInput placeholder="Teléfono" formControlName="telefonoRemitente" required>
+                            <mat-error *ngIf="contactForm.controls.telefonoRemitente.errors?.required">Su número de teléfono es necesario</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxFlex="100" class="mt-2">
                         <mat-form-field class="w-100">
-                            <input matInput placeholder="Mensaje" formControlName="message" required>
-                            <mat-error *ngIf="contactForm.controls.message.errors?.required">Debe introducir el cuerpo del mensaje</mat-error>
+                            <input matInput placeholder="Mensaje" formControlName="mensaje" required>
+                            <mat-error *ngIf="contactForm.controls.mensaje.errors?.required">Debe introducir el cuerpo del mensaje</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="w-100 py-4 text-center">

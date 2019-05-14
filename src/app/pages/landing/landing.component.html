@@ -17,7 +17,8 @@
                     <button mat-icon-button (click)="sidenav.toggle()" fxHide="false" fxHide.gt-sm class="mx-3">
                         <mat-icon>menu</mat-icon>
                     </button>
-                    <a mat-raised-button color="accent" routerLink="/login" >Inicia Sesión</a>
+                    <a mat-raised-button color="accent" *ngIf="!isAuthenticated()" routerLink="/login" >Inicia Sesión</a>
+                    <a mat-raised-button color="accent" *ngIf="isAuthenticated()" routerLink="/home" >Administración</a>
                 </div>
             </div>
         </mat-toolbar>

@@ -12,11 +12,11 @@ import {Router} from "@angular/router";
 })
 export class UserMenuComponent implements OnInit {
   public memberActive: Member;
-  constructor(private memberService: UsersService,  private authService: AuthService,
+  constructor(private authService: AuthService,
               public router:Router ) {}
 
   ngOnInit() {
-    this.memberService.getMemberActive().subscribe((member: Member)=>this.memberActive = member);
+    this.authService.getMemberActive.subscribe((member: Member)=>this.memberActive = member);
   }
     logout(){
         if(this.authService.isAuthenticated())

@@ -45,6 +45,7 @@
                 <h2>{{member.usuario.first_name}} {{member.usuario.last_name}}</h2>
                 <p class="text secondary-text-color my-3">"{{member.resumenCV}}"</p>
                 <h4 class="secondary-text-color"> - {{member.categoria}}, {{member.centro.nombre}}</h4>
+                <h4 *ngIf="member.cargo.length>0" class="secondary-text-color"> - {{member.cargo}} de la Junta Directiva</h4>
             </mat-card>
         </ngu-tile>
         <ul class="nguCarouselPoints" NguCarouselPoint>
