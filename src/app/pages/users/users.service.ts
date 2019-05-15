@@ -31,15 +31,26 @@ export class UsersService {
             map((res: any)=> res)
         );
     }
-    // addUser(user:User){
-    //     return this.http.post(this.url, user);
-    // }
-    //
-    // updateUser(user:User){
-    //     return this.http.put(this.url, user);
-    // }
-    //
-    // deleteUser(id: number) {
-    //     return this.http.delete(this.url + "/" + id);
-    // }
+    addUser(user:User){
+        const formData = new FormData()
+        formData.append('first_name', user.first_name)
+        formData.append('last_name', user.last_name)
+        formData.append('username', user.username)
+        formData.append('email', user.email)
+        formData.append('password', user.password)
+        formData.append('miembro.foto', user.miembro.foto)
+        formData.append('miembro.centro', user.miembro.centro)
+        formData.append('miembro.cargo', user.miembro.cargo)
+        formData.append('miembro.categoria', user.miembro.categoria)
+        formData.append('miembro.resumenCV', user.miembro.resumenCV)
+        return this.http.post(`${environment.apiBase}user/`, formData);
+    }
+
+    updateMember(user:User){
+        return this.http.put(`${environment.apiBase}user/`, user);
+    }
+
+    deleteUser(id: number) {
+        return this.http.delete(`${environment.apiBase}user/${id}/`);
+    }
 } 

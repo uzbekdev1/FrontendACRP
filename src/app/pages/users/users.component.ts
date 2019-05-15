@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AppSettings } from '../../app.settings';
 import { Settings } from '../../app.settings.model';
-import { Member} from './user.model';
+import {Member, User} from './user.model';
 import { UsersService } from './users.service';
 import {UserDialogComponent} from "./user-dialog/user-dialog.component";
 
@@ -36,15 +36,15 @@ export class UsersComponent implements OnInit {
             this.members = users;
             });
     }
-    // public addUser(user:User){
-    //     this.usersService.addUser(user).subscribe(user => this.getUsers());
-    // }
-    // public updateUser(user:User){
-    //     this.usersService.updateUser(user).subscribe(user => this.getUsers());
-    // }
-    // public deleteMemberr(user:User){
-    //    this.usersService.deleteUser(user.id).subscribe(user => this.getUsers());
-    // }
+    public addUser(user:User){
+        this.usersService.addUser(user).subscribe(user => this.getMembers());
+    }
+    public updateUser(user:User){
+        this.usersService.updateMember(user).subscribe(user => this.getMembers());
+    }
+    public deleteMember(user:User){
+       this.usersService.deleteUser(user.id).subscribe(user => this.getMembers());
+    }
     
     public changeView(viewType){
         this.viewType = viewType;
@@ -62,9 +62,9 @@ export class UsersComponent implements OnInit {
             data: user
         });
         dialogRef.afterClosed().subscribe(user => {
-            // if(user){
-            //     (user.id) ? this.updateUser(user) : this.addUser(user);
-            // }
+            if(user){
+                (user.id) ? this.updateUser(user) : this.addUser(user);
+            }
         });
         this.showSearch = false;
     }

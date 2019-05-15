@@ -6,6 +6,7 @@ import {map} from "rxjs/operators";
 import {environment} from "../../../../environments/environment";
 import {Evento} from "../../eventos/eventos.model";
 import {Member} from "../../users/user.model";
+import Swal from "sweetalert2";
 
 @Injectable()
 export class ApiService {
@@ -78,7 +79,16 @@ export class ApiService {
             miembros.results.map((miembro: Member) => {
                 form.append('miembros', miembro.id.toString())
             })
-            this.http.post<any>(`${environment.apiBase}mensaje/`, form).subscribe();
+            this.http.post<any>(`${environment.apiBase}mensaje/`, form).subscribe(()=>{
+                Swal({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'Mensaje Enviado',
+                    text: 'La Junta Directiva recibirá su mensaje y lo contactará pronto',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
         })
     }
 }

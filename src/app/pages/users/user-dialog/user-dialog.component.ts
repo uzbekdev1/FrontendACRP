@@ -28,36 +28,40 @@ export class UserDialogComponent implements OnInit {
         {value: 'gradient-lime', viewValue: 'Lime'}
     ];
     centros: any[];
+
     constructor(private apiService: ApiService, public dialogRef: MatDialogRef<UserDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public member: Member) {
+                @Inject(MAT_DIALOG_DATA) public miembro: Member) {
         this.form = new FormGroup({
-            centro: new FormControl("", Validators.required),
-            resumenCV: new FormControl('', Validators.required),
-            categoria: new FormControl('', Validators.required),
-            // foto: new FormControl('', Validators.required),
-            usuario:new FormGroup({
-                first_name: new FormControl('', Validators.required),
-                last_name: new FormControl('', Validators.required),
-                username: new FormControl(null, [Validators.required, Validators.minLength(5)]),
-                password:  new FormControl(null, [Validators.required, Validators.minLength(6)]),
-                email:  new FormControl(null, [Validators.required, Validators.email]),
+            first_name: new FormControl('', Validators.required),
+            last_name: new FormControl('', Validators.required),
+            username: new FormControl(null, [Validators.required, Validators.minLength(5)]),
+            password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+            email: new FormControl(null, [Validators.required, Validators.email]),
+            miembro: new FormGroup({
+                centro: new FormControl("", Validators.required),
+                resumenCV: new FormControl('', Validators.required),
+                categoria: new FormControl('', Validators.required),
+                cargo: new FormControl('', Validators.required),
+                foto: new FormControl(''),
+
             })
         });
     }
 
     ngOnInit() {
-        this.apiService.getCentros().subscribe(res=>this.centros = res['results']);
-        if (this.member) {
-            this.form.get('usuario.first_name').setValue(this.member.usuario.first_name)
-            this.form.get('usuario.last_name').setValue(this.member.usuario.last_name)
-            this.form.get('usuario.username').setValue(this.member.usuario.username)
-            this.form.get('usuario.email').setValue(this.member.usuario.email)
-             this.form.controls.centro.setValue(this.member.centro.id);
-            this.form.controls.categoria.setValue(this.member.categoria);
-            this.form.controls.resumenCV.setValue(this.member.resumenCV);
+        this.apiService.getCentros().subscribe(res => this.centros = res['results']);
+        if (this.miembro) {
+            this.form.controls.first_name.setValue(this.miembro.usuario.first_name)
+            this.form.controls.password.setValue('')
+            this.form.controls.last_name.setValue(this.miembro.usuario.last_name)
+            this.form.controls.username.setValue(this.miembro.usuario.username)
+            this.form.controls.email.setValue(this.miembro.usuario.email)
+            this.form.get('miembro.centro').setValue(this.miembro.centro.id);
+            this.form.get('miembro.categoria').setValue(this.miembro.categoria);
+            this.form.get('miembro.resumenCV').setValue(this.miembro.resumenCV);
         }
         else {
-            this.member = new Member();
+            this.miembro = new Member();
         }
     }
 
@@ -65,4 +69,11 @@ export class UserDialogComponent implements OnInit {
         this.dialogRef.close();
     }
 
+    onFileChange(files) {
+        var reader = new FileReader();
+        reader.readAsDataURL(files[0]);
+        reader.onload = (_event) => {
+            this.form.get('miembro').get('foto').setValue(files[0]);
+        }
+    }
 }
