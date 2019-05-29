@@ -12,22 +12,19 @@ import {AuthService} from "./auth.service";
 })
 export class LoginComponent {
   public form:FormGroup;
-  public settings: Settings;
-  constructor(public appSettings:AppSettings, public fb: FormBuilder, private authService: AuthService){
-    this.settings = this.appSettings.settings; 
+  constructor(public fb: FormBuilder, private authService: AuthService){
     this.form = this.fb.group({
-      'username': [null, Validators.compose([Validators.required])],
-      'password': [null, Validators.compose([Validators.required])]
+      'username': ['', Validators.compose([Validators.required])],
+      'password': ['', Validators.compose([Validators.required])]
     });
   }
 
-  public onSubmit(values:Object):void {
+  public onSubmit():void {
     if (this.form.valid) {
-      this.authService.login(this.form.getRawValue())
+      this.authService.login(this.form.value)
     }
   }
 
   ngAfterViewInit(){
-    this.settings.loadingSpinner = false; 
   }
 }

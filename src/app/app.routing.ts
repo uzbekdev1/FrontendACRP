@@ -2,8 +2,6 @@ import { Routes, RouterModule, PreloadAllModules  } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
 import { PagesComponent } from './pages/pages.component';
-import { BlankComponent } from './pages/blank/blank.component';
-import { SearchComponent } from './pages/search/search.component';
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 import { ErrorComponent } from './pages/errors/error/error.component';
 import {AuthGuard} from "./shared/guard/auth-guard.service";
@@ -25,7 +23,6 @@ export const routes: Routes = [
     },
     { path: '', loadChildren: './pages/landing/landing.module#LandingModule' },
     { path: 'login', loadChildren: './pages/login/login.module#LoginModule' },
-    { path: 'register', loadChildren: './pages/register/register.module#RegisterModule' },
     { path: 'error', component: ErrorComponent, data: { breadcrumb: 'Error' } },
     { path: '**', component: NotFoundComponent }
 ];

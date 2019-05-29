@@ -46,7 +46,7 @@ export class AuthService {
                 title: 'Autenticación Satisfactoria',
                 text: 'Se ha autenticado correctamente',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2000
             });
             this.router.navigate(['/home'])
         }, error1 => {

@@ -22,10 +22,9 @@ export class ProyectosComponent implements OnInit {
     public showSearch: boolean = false;
     public viewType: string = 'list';
 
-    constructor(public appSettings: AppSettings,
+    constructor(
                 public dialog: MatDialog,
                 public proyectosService: ProyectosService) {
-        this.settings = this.appSettings.settings;
     }
 
     ngOnInit() {
@@ -74,13 +73,13 @@ export class ProyectosComponent implements OnInit {
         document.getElementById('main').scrollTop = 0;
     }
 
-    public openProyectoDialog(center) {
+    public openProyectoDialog(proyecto) {
         let dialogRef = this.dialog.open(ProyectoDialogComponent, {
-            data: center
+            data: proyecto
         });
-        dialogRef.afterClosed().subscribe(center => {
-            if (center) {
-                (center.id) ? this.updateProyecto(center) : this.addProyecto(center);
+        dialogRef.afterClosed().subscribe(proyecto => {
+            if (proyecto) {
+                (proyecto.id) ? this.updateProyecto(proyecto) : this.addProyecto(proyecto);
             }
         });
         this.showSearch = false;

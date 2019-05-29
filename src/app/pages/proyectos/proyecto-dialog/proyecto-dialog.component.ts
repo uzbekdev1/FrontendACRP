@@ -22,7 +22,7 @@ export class ProyectoDialogComponent implements OnInit {
             descripcion: new FormControl('', Validators.required),
             miembros: new FormControl('', Validators.required),
             pdf: new FormControl(''),
-            categoria: new FormControl(''),
+            categoria: new FormControl('', Validators.required),
         });
     }
 

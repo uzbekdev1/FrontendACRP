@@ -8,18 +8,18 @@ import {ScrollToModule} from '@nicky-lenaers/ngx-scroll-to';
 import {NguCarouselModule} from '@ngu/carousel';
 import {LandingService} from './landing.service';
 import {LandingComponent} from './landing.component';
-import {MonthlyComponent} from './monthly/monthly.component';
-import {YearlyComponent} from './yearly/yearly.component';
+import {BoletinesLandingComponent} from './boletines/boletines-landing.component';
 import {PricingComponent} from './pricing/pricing.component';
-import {TestimonialsComponent} from './testimonials/testimonials.component';
-import {OurServicesComponent} from './our-services/our-services.component';
-import {OurWorksComponent} from './our-works/our-works.component';
-import {FeaturesComponent} from './features/features.component';
+import {JuntaLandingComponent} from './testimonials/junta-landing.component';
+import {EventosLandingComponent} from './eventos/eventos-landing.component';
+import {ProyectosLandingComponent} from './proyectos/proyectos-landing.component';
+import {NoticiasLandingComponent} from './noticias/noticias-landing.component';
 import {ContactUsComponent} from './contact-us/contact-us.component';
 import {ApiService} from "./services/api-service.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ReadMoreDialogComponent} from "./read-more-dialog/read-more-dialog.component";
 import {UserInfoDialogComponent} from "./testimonials/user-info-dialog/user-info-dialog.component";
+import {PublicacionesLandingComponent} from "./publicaciones/publicaciones-landing.component";
 
 export const routes = [
     {path: '', component: LandingComponent, pathMatch: 'full'}
@@ -38,13 +38,13 @@ export const routes = [
     ],
     declarations: [
         LandingComponent,
-        MonthlyComponent,
-        YearlyComponent,
+        ProyectosLandingComponent,
+        BoletinesLandingComponent,
         PricingComponent,
-        TestimonialsComponent,
-        OurServicesComponent,
-        OurWorksComponent,
-        FeaturesComponent,
+        JuntaLandingComponent,
+        EventosLandingComponent,
+        PublicacionesLandingComponent,
+        NoticiasLandingComponent,
         ContactUsComponent,
         ReadMoreDialogComponent,
         UserInfoDialogComponent,

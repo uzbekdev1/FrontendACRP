@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { LoginComponent } from './login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './token.interceptor';
 
 export const routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' }
@@ -19,6 +21,9 @@ export const routes = [
   ],
   declarations: [
     LoginComponent
-  ]
+  ],
+    providers: [
+
+    ]
 })
 export class LoginModule { }

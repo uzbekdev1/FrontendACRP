@@ -15,7 +15,7 @@ RUN npm install  --loglevel verbose
 
 RUN npm rebuild node-sass --loglevel verbose
 
-RUN $(npm bin)/ng build
+RUN $(npm bin)/ng build --prod
 
 ## STATE 2: Run nginx to server ##
 

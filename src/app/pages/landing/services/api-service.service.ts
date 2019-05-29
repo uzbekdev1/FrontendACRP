@@ -83,10 +83,10 @@ export class ApiService {
                 Swal({
                     position: 'top-end',
                     type: 'success',
-                    title: 'Mensaje Enviado',
+                    title: 'Mensaje Enviado Satisfactoriamente',
                     text: 'La Junta Directiva recibirá su mensaje y lo contactará pronto',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 2000
                 });
             });
         })

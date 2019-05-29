@@ -22,7 +22,7 @@ export class AnalyticsComponent implements OnInit {
   public autoScale = true;
   public roundDomains = true;
   @ViewChild('resizedDiv') resizedDiv:ElementRef;
-  public previousWidthOfResizedDiv:number = 0; 
+  public previousWidthOfResizedDiv:number = 0;
 
   constructor() { }
 

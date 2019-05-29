@@ -22,8 +22,6 @@ import { routing } from './app.routing';
 import { AppSettings } from './app.settings';
 import { AppComponent } from './app.component';
 import { PagesComponent } from './pages/pages.component';
-import { BlankComponent } from './pages/blank/blank.component';
-import { SearchComponent } from './pages/search/search.component';
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 import { ErrorComponent } from './pages/errors/error/error.component';
 
@@ -37,7 +35,8 @@ import { MessagesComponent } from './theme/components/messages/messages.componen
 import { UserMenuComponent } from './theme/components/user-menu/user-menu.component';
 import { FavoritesComponent } from './theme/components/favorites/favorites.component';
 import {UsersService} from "./pages/users/users.service";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {TokenInterceptor} from "./pages/login/token.interceptor";
 
 @NgModule({
     imports: [
@@ -58,8 +57,6 @@ import {HttpClientModule} from "@angular/common/http";
     declarations: [
         AppComponent,
         PagesComponent,
-        BlankComponent,
-        SearchComponent,
         NotFoundComponent,
         ErrorComponent,
         TopInfoContentComponent,
@@ -76,6 +73,7 @@ import {HttpClientModule} from "@angular/common/http";
         AppSettings,UsersService,
         { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
         { provide: OverlayContainer, useClass: CustomOverlayContainer },
+
     ],
     bootstrap: [
         AppComponent

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {environment} from "../../../environments/environment";
-import {map} from "rxjs/operators";
+import {filter, flatMap, map, toArray} from "rxjs/operators";
 import {Evento} from "./eventos.model";
 
 @Injectable()
@@ -17,9 +17,11 @@ export class EventosService {
             'Accept': 'application/json',
         });
     }
-    getEventos(): Observable<Evento[]> {
-        return this.http.get<Evento[]>(`${environment.apiBase}evento/`,{headers: this.headers}).pipe(
-            map((res: any)=> res.results)
+    getEventos(): Observable<any> {
+        return this.http.get<any>(`${environment.apiBase}evento/`,{headers: this.headers}).pipe(
+            flatMap(res=>res.results),
+            filter((e: Evento)=>true),
+            toArray()
         );
     }
 

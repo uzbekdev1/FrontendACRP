@@ -16,7 +16,7 @@
                         <input matInput placeholder="Categoría" formControlName="categoria">
                     </mat-form-field>
                     <mat-form-field id="search-input" class="hide-theme-color" floatLabel="never" color="accent">
-                        <mat-select formControlName="miembros" multiple placeholder="Miembros">
+                        <mat-select formControlName="miembros" multiple placeholder="Miembros" ngDefaultControl>
                             <mat-option *ngFor="let member of members" [value]="member.id">
                                 {{member.usuario.first_name}} {{member.usuario.last_name}}
                             </mat-option>

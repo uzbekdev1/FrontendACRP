@@ -37,6 +37,8 @@ import {
 } from '@angular/material';
 import {ContentHeaderComponent} from './content-header/content-header.component';
 import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {TokenInterceptor} from "../pages/login/token.interceptor";
 
 @NgModule({
     imports: [
@@ -115,7 +117,11 @@ import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
         ContentHeaderComponent,
         BreadcrumbComponent
     ],
-    providers: []
+    providers: [{
+        provide: HTTP_INTERCEPTORS,
+        useClass: TokenInterceptor,
+        multi: true
+    }]
 })
 export class SharedModule {
 }
