@@ -44,12 +44,19 @@
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field class="w-100">
+                        <mat-select formControlName="rol" #selectBank>
+                            <mat-option *ngFor="let rol of roles, let i=index" [value]="rol">
+                                {{rol}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
                         <input matInput placeholder="Categoria" formControlName="categoria">
                     </mat-form-field>
                     <mat-form-field class="w-100">
                         <input matInput placeholder="Cargo" formControlName="cargo">
                     </mat-form-field>
-                    <mat-form-field class="w-100">
+                    <mat-form-field class="w-100" appearance="outline">
                         <textarea matInput placeholder="Resumen CV" formControlName="resumenCV"></textarea>
                     </mat-form-field>
                 </div>
@@ -58,6 +65,6 @@
     </form>
 </div>
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]="!form.valid"><span *ngIf="miembro && !miembro.id">Crear</span><span *ngIf="miembro && miembro.id">Actualizar</span></button>
+    <button mat-raised-button color="primary" *ngIf="authService.getRolMemberActive()!='miembro'" [mat-dialog-close]="form.value" [disabled]="!form.valid"><span *ngIf="miembro && !miembro.id">Crear</span><span *ngIf="miembro && miembro.id">Actualizar</span></button>
     <button mat-raised-button color="warn" (click)="close()">Cancel</button>
 </div>

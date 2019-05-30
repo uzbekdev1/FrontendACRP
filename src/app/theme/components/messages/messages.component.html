@@ -11,13 +11,13 @@
                 <mat-card class="content" perfectScrollbar>
                   <div fxLayout="column" fxLayoutAlign="none">
                       <button mat-button *ngFor="let message of messages">
-                          <div fxLayout="column" fxLayoutAlign="none" class="w-100">
+                          <div fxLayout="column" fxLayoutAlign="start" class="w-100">
                               <div fxLayout="row" fxLayoutAlign="space-between start">
                                   <span class="name">{{message.nombreRemitente}}</span>
-                                  <span class="correo">{{message.correoRemitente}}</span>
                                   <span class="info"><mat-icon>access_time</mat-icon> {{message.fecha}}</span>
                               </div>
-                              <span class="text secondary-text-color">{{message.mensaje}}</span>
+                              <span fxLayoutAlign="start">{{message.mensaje}}</span>
+                              <span class="text secondary-text-color " fxLayoutAlign="start">{{message.correoRemitente}}</span>
                           </div>
                       </button>
                     </div>             

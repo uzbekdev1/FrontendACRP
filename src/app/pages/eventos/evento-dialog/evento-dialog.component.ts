@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from "../../landing/services/api-service.service";
 import {Evento} from "../eventos.model";
+import {Boletin} from "../../boletines/boletines.model";
+import {AuthService} from "../../login/auth.service";
 
 @Component({
     selector: 'app-evento-dialog',
@@ -16,7 +18,7 @@ export class EventoDialogComponent implements OnInit {
     centros: any[];
 
     constructor(private apiService: ApiService, public dialogRef: MatDialogRef<EventoDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public evento: Evento) {
+                @Inject(MAT_DIALOG_DATA) public evento: Evento, public authService: AuthService) {
         this.form = new FormGroup({
             id: new FormControl(''),
             nombre: new FormControl("", Validators.required),

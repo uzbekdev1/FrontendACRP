@@ -8,7 +8,7 @@
 
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="px-2 member-toolbar">
     <div fxLayout="row">
-        <button mat-icon-button (click)="openMemberDialog(null)">
+        <button *ngIf="authService.getRolMemberActive()!='miembro'" mat-icon-button (click)="openMemberDialog(null)">
             <mat-icon>person_add</mat-icon>
         </button>
     </div>

@@ -16,6 +16,7 @@ export class Member{
   publicaciones: Publicacion[];
   boletines: Boletin[];
   mensajes: Mensaje[];
+  rol: string;
 }
 
 export class User {

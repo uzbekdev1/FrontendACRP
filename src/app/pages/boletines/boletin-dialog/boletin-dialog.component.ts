@@ -6,6 +6,7 @@ import {Boletin} from "../boletines.model";
 import {SelectionModel} from "@angular/cdk/collections";
 import {Member} from "../../users/user.model";
 import {Observable} from "rxjs";
+import {AuthService} from "../../login/auth.service";
 
 @Component({
     selector: 'app-proyecto-dialog',
@@ -19,7 +20,7 @@ export class BoletinDialogComponent implements OnInit {
     members: Member[];
 
     constructor(private apiService: ApiService, public dialogRef: MatDialogRef<BoletinDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public boletin: Boletin) {
+                @Inject(MAT_DIALOG_DATA) public boletin: Boletin, public authService: AuthService) {
         this.form = new FormGroup({
             id: new FormControl(''),
             titulo: new FormControl("", Validators.required),

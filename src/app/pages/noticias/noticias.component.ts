@@ -7,6 +7,7 @@ import { UsersService } from '../users/users.service';
 import {NoticiaDialogComponent} from "./noticia-dialog/noticia-dialog.component";
 import {NoticiasService} from "./noticias.service";
 import {FormGroup} from "@angular/forms";
+import {AuthService} from "../login/auth.service";
 
 @Component({
   selector: 'app-centros',
@@ -23,7 +24,8 @@ export class NoticiasComponent implements OnInit {
     public viewType:string = 'grid';
     constructor(public appSettings:AppSettings, 
                 public dialog: MatDialog,
-                public noticiaService:NoticiasService){
+                public noticiaService:NoticiasService,
+                public authService: AuthService){
         this.settings = this.appSettings.settings; 
     }
 

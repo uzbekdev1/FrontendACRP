@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Centro} from '../centros.model';
 import {ApiService} from "../../landing/services/api-service.service";
+import {Boletin} from "../../boletines/boletines.model";
+import {AuthService} from "../../login/auth.service";
 
 @Component({
     selector: 'app-user-dialog',
@@ -18,7 +20,7 @@ export class CentroDialogComponent implements OnInit {
     @ViewChild('inputFile') picAddress: ElementRef;
 
     constructor(public dialogRef: MatDialogRef<CentroDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public center: Centro) {
+                @Inject(MAT_DIALOG_DATA) public center: Centro, public authService: AuthService) {
         this.form = new FormGroup({
             id: new FormControl(''),
             nombre: new FormControl("", Validators.required),

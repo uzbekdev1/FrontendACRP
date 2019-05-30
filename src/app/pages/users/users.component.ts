@@ -5,6 +5,7 @@ import { Settings } from '../../app.settings.model';
 import {Member, User} from './user.model';
 import { UsersService } from './users.service';
 import {UserDialogComponent} from "./user-dialog/user-dialog.component";
+import {AuthService} from "../login/auth.service";
 
 @Component({
   selector: 'app-users',
@@ -22,7 +23,8 @@ export class UsersComponent implements OnInit {
     public viewType:string = 'grid';
     constructor(public appSettings:AppSettings, 
                 public dialog: MatDialog,
-                public usersService:UsersService){
+                public usersService:UsersService,
+                public authService: AuthService){
         this.settings = this.appSettings.settings; 
     }
 

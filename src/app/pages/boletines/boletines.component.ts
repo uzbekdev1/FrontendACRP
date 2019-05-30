@@ -5,6 +5,7 @@ import {Settings} from '../../app.settings.model';
 import {BoletinDialogComponent} from "./boletin-dialog/boletin-dialog.component";
 import {BoletinesService} from "./boletines.service";
 import {Boletin} from "./boletines.model";
+import {AuthService} from "../login/auth.service";
 
 @Component({
     selector: 'app-boletines',
@@ -22,7 +23,8 @@ export class BoletinesComponent implements OnInit {
 
     constructor(public appSettings: AppSettings,
                 public dialog: MatDialog,
-                public boletinesService: BoletinesService) {
+                public boletinesService: BoletinesService,
+                public authService: AuthService) {
         this.settings = this.appSettings.settings;
     }
 

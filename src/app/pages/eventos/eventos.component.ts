@@ -5,6 +5,7 @@ import {Settings} from '../../app.settings.model';
 import {EventoDialogComponent} from "./evento-dialog/evento-dialog.component";
 import {EventosService} from "./eventos.service";
 import {Evento} from "./eventos.model";
+import {AuthService} from "../login/auth.service";
 
 @Component({
     selector: 'app-evento',
@@ -22,7 +23,8 @@ export class EventosComponent implements OnInit {
 
     constructor(public appSettings: AppSettings,
                 public dialog: MatDialog,
-                public eventosService: EventosService) {
+                public eventosService: EventosService,
+                public authService: AuthService) {
         this.settings = this.appSettings.settings;
     }
 

@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Noticia} from '../noticias.model';
 import {ApiService} from "../../landing/services/api-service.service";
+import {EventosService} from "../../eventos/eventos.service";
+import {AuthService} from "../../login/auth.service";
 
 @Component({
     selector: 'app-user-dialog',
@@ -16,7 +18,8 @@ export class NoticiaDialogComponent implements OnInit {
     @ViewChild('inputFile') picAddress: ElementRef;
 
     constructor(public dialogRef: MatDialogRef<NoticiaDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public noticia: Noticia) {
+                @Inject(MAT_DIALOG_DATA) public noticia: Noticia,
+                public authService: AuthService) {
         this.form = new FormGroup({
             id: new FormControl(''),
             titulo: new FormControl("", Validators.required),

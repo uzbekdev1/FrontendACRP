@@ -6,7 +6,7 @@ import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
 import {Member} from "../users/user.model";
-import {map} from "rxjs/operators";
+import {map, skip} from "rxjs/operators";
 
 class Miembro {
 }
@@ -82,5 +82,9 @@ export class AuthService {
 
     get getMemberActive(): BehaviorSubject<Miembro> {
         return this._memberActive;
+    }
+
+    getRolMemberActive(){
+        return this._memberActive.pipe(skip(1)).subscribe(member=>member.rol)
     }
 }

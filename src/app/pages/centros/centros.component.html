@@ -8,13 +8,13 @@
 
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="px-2 member-toolbar">
     <div fxLayout="row">
-        <button mat-icon-button (click)="openCenterDialog(null)">
+        <button *ngIf="authService.getRolMemberActive()!='miembro'" mat-icon-button (click)="openCenterDialog(null)">
             <mat-icon>add_location</mat-icon>
         </button>
     </div>
 </mat-toolbar>
 
-<div class="members-wrapper p-2" >
+<div class="members-wrapper p-2">
     <div *ngIf="viewType == 'grid' && centers" fxLayout="row wrap">
         <div *ngFor="let center of centers" fxFlex="100" fxFlex.gt-md="33.3" fxFlex.md="50" fxFlex.sm="50" class="p-2">
             <mat-card fxLayout="row" class="p-0 member-content">  

@@ -7,6 +7,7 @@ import { UsersService } from '../users/users.service';
 import {CentroDialogComponent} from "./centro-dialog/centro-dialog.component";
 import {CentersService} from "./centers.service";
 import {FormGroup} from "@angular/forms";
+import {AuthService} from "../login/auth.service";
 
 @Component({
   selector: 'app-centros',
@@ -23,7 +24,8 @@ export class CentrosComponent implements OnInit {
     public viewType:string = 'grid';
     constructor(public appSettings:AppSettings, 
                 public dialog: MatDialog,
-                public centerService:CentersService){
+                public centerService:CentersService,
+                public authService: AuthService){
         this.settings = this.appSettings.settings; 
     }
 
