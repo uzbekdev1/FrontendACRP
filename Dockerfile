@@ -1,4 +1,4 @@
-## STAGE 2: Build Angular Application ##
+  ## STAGE 2: Build Angular Application ##
 FROM node:10 as builder
 
 COPY . /angular_app

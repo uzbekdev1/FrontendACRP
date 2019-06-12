@@ -15,7 +15,8 @@
                 </mat-form-field>
                 <mat-form-field class="w-100">
                     <mat-icon matPrefix class="mat-icon-sm mb-2 mr-2 secondary-text-color">lock</mat-icon>
-                    <input matInput placeholder="Contraseña" formControlName="password">
+                    <input matInput placeholder="Contraseña" formControlName="password" required [type]="passwordHide ? 'password' : 'text'">
+                    <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility' : 'visibility_off'}}</mat-icon>
                     <mat-error *ngIf="form.controls.password.errors?.required">Ingrese la contraseña</mat-error>
                 </mat-form-field>               
                 <button mat-raised-button color="primary" class="mat-elevation-z6 w-100 mt-3" type="submit">COMENZAR SESIÓN</button>

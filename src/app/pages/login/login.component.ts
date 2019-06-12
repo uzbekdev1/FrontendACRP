@@ -12,6 +12,8 @@ import {AuthService} from "./auth.service";
 })
 export class LoginComponent {
   public form:FormGroup;
+  public passwordHide: boolean = true;
+
   constructor(public fb: FormBuilder, private authService: AuthService){
     this.form = this.fb.group({
       'username': ['', Validators.compose([Validators.required])],
